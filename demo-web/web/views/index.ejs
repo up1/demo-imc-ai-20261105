@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="th" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+
+    <div class="app-layout">
+      <aside class="sidebar" aria-label="SlipFlow navigation">
+        <a class="sidebar-brand" href="/" aria-label="SlipFlow home">
+          <span class="brand-mark">S</span>
+          <span>Slip<span>Flow</span></span>
+        </a>
+
+        <div class="balance-card">
+          <span class="muted-label">ยอดเงินคงเหลือสุทธิ</span>
+          <strong>฿124,580.00</strong>
+          <span class="balance-note"><span class="status-dot"></span> อัปเดตล่าสุด: วันนี้</span>
+        </div>
+
+        <nav class="side-navigation" aria-label="Main navigation">
+          <a class="side-link" href="#dashboard"><span class="material-symbols-outlined">grid_view</span>แดชบอร์ด</a>
+          <a class="side-link is-active" href="#upload"><span class="material-symbols-outlined">document_scanner</span>อัปโหลดสลิป</a>
+          <a class="side-link" href="#transactions"><span class="material-symbols-outlined">receipt_long</span>รายการธุรกรรม</a>
+          <a class="side-link" href="#reports"><span class="material-symbols-outlined">monitoring</span>รายงาน</a>
+          <a class="side-link" href="#settings"><span class="material-symbols-outlined">settings</span>การตั้งค่า</a>
+        </nav>
+
+        <div class="operator-card">
+          <span class="operator-avatar"><span class="material-symbols-outlined">person</span></span>
+          <span><strong>Cyber Operator</strong><small>ID #88204-SF</small></span>
+          <button type="button" aria-label="ออกจากระบบ"><span class="material-symbols-outlined">logout</span></button>
+        </div>
+      </aside>
+
+      <div class="workspace">
+        <header class="topbar">
+          <div class="system-status"><span class="status-dot"></span> SLIPFLOW // CORE SYSTEM ONLINE</div>
+          <div class="top-actions" aria-label="Quick actions">
+            <button type="button" aria-label="ค้นหา"><span class="material-symbols-outlined">search</span></button>
+            <button type="button" aria-label="การแจ้งเตือน"><span class="material-symbols-outlined">notifications</span><span class="notification-dot"></span></button>
+            <button class="account-action" type="button" aria-label="บัญชีผู้ใช้"><span class="material-symbols-outlined">person</span></button>
+          </div>
+        </header>
+
+        <main class="dashboard-shell">
+        <section class="hero-row">
+          <div>
+            <div class="label-chip">
+              <span class="pulse"></span>
+              STEP 01 // INGESTION ENGINE
+            </div>
+            <h2>
+              อัปโหลดสลิปโอนเงิน / <span>ใบเสร็จ</span>
+            </h2>
+            <p>
+              ลากและวางสลิปเพื่อสแกนและดึงข้อมูลอัตโนมัติด้วยระบบ AI OCR ความแม่นยำสูง
+              รองรับทุกธนาคารในไทย
+            </p>
+          </div>
+
+          <div class="metrics-card">
+            <div>
+              <span class="muted-label">OCR Engine Status</span>
+              <strong class="metric-accent">V3.4 NEURAL LATENCY 140ms</strong>
+            </div>
+            <div class="divider"></div>
+            <div>
+              <span class="muted-label">โควตาวันนี้</span>
+              <strong>142 / 500 รายการ</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-grid">
+          <div class="primary-panel">
+            <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload slip file">
+              <input id="slipFileInput" type="file" accept="image/jpeg,image/png" hidden />
+
+              <div class="scan-graphic">
+                <div class="scan-ring">
+                  <span class="material-symbols-outlined">document_scanner</span>
+                </div>
+                <span class="scan-badge"></span>
+              </div>
+
+              <h3>ลากสลิปมาวางที่นี่ หรือคลิกเพื่อค้นหา</h3>
+              <p>
+                ระบบรองรับไฟล์ JPG หรือ PNG ขนาดสูงสุด 5 MB ต่อครั้ง
+              </p>
+
+              <div class="chip-row">
+                <span class="meta-chip"><span class="material-symbols-outlined">image</span> JPG / JPEG</span>
+                <span class="meta-chip"><span class="material-symbols-outlined">filter</span> PNG</span>
+                <span class="meta-chip plain">MAX 5 MB</span>
+              </div>
+
+              <button class="action-button" id="chooseFileButton" type="button">
+                <span class="material-symbols-outlined">add_photo_alternate</span>
+                เลือกไฟล์สลิปจากอุปกรณ์
+              </button>
+              <p class="file-status" id="fileStatus" role="status" aria-live="polite">พร้อมรอไฟล์สลิปสำหรับการสแกน</p>
+            </div>
+
+            <div class="utility-grid">
+              <article class="utility-card">
+                <div class="utility-icon">
+                  <span class="material-symbols-outlined">layers</span>
+                </div>
+                <div>
+                  <div class="utility-title-row">
+                    <h4>อัปโหลดสลิปแบบกลุ่ม</h4>
+                    <span class="tag tag-pink">BATCH x20</span>
+                  </div>
+                  <p>อัปโหลดครั้งละหลายรายการ เหมาะสำหรับการสรุปยอดบิลประจำวันหรือรอบสต็อก</p>
+                </div>
+              </article>
+
+              <article class="utility-card">
+                <div class="utility-icon alt">
+                  <span class="material-symbols-outlined">photo_camera</span>
+                </div>
+                <div>
+                  <div class="utility-title-row">
+                    <h4>เปิดกล้องสแกนสด</h4>
+                    <span class="tag tag-cyan">LIVE AUTO-DETECT</span>
+                  </div>
+                  <p>จับคู่เฟรมอัตโนมัติพร้อมตัดขอบและปรับแต่งระดับแสงด้วยคอมพิวเตอร์วิทัศน์</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="bank-strip">
+              <div class="bank-header">
+                <div>
+                  <span class="material-symbols-outlined">verified_user</span>
+                  <span>รองรับสลิปสแกนตรวจสอบทุกธนาคารชั้นนำ</span>
+                </div>
+                <span class="bank-status"><span class="dot"></span> เชื่อมต่อ ธปท. Direct API</span>
+              </div>
+
+              <div class="bank-grid">
+                <div class="bank-item"><span class="bank-mark kbank"></span><div><strong>KBANK</strong><small>กสิกรไทย</small></div></div>
+                <div class="bank-item"><span class="bank-mark scb"></span><div><strong>SCB</strong><small>ไทยพาณิชย์</small></div></div>
+                <div class="bank-item"><span class="bank-mark ktb"></span><div><strong>KTB</strong><small>กรุงไทย</small></div></div>
+                <div class="bank-item"><span class="bank-mark bbl"></span><div><strong>BBL</strong><small>กรุงเทพ</small></div></div>
+                <div class="bank-item"><span class="bank-mark promptpay"></span><div><strong>PromptPay</strong><small>พร้อมเพย์</small></div></div>
+                <div class="bank-item"><span class="bank-mark truemoney"></span><div><strong>TrueMoney</strong><small>ทรูมันนี่</small></div></div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="sidebar-panel">
+            <div class="sidebar-card">
+              <div class="sidebar-head">
+                <div>
+                  <span class="material-symbols-outlined">hourglass_top</span>
+                  <h3>สลิปล่าสุดที่กำลังประมวลผล</h3>
+                </div>
+                <span class="live-pill"><span class="dot"></span> พร้อมตรวจสอบ</span>
+              </div>
+
+              <div class="slip-preview">
+                <div class="preview-image">
+                  <img id="slipPreview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjUwkACQiRQdEIeq_DkTftMNpbv3nyn3DvZ2leY71NEVdty99GkgOCzV4IKHNHtKfkL-hrWsWMpP3yweTpK_myJdcrETiNml3lOa0ToMooYndor4IEuck0wNvUMDTehmDsQio0FK1wR2xtSywlR6kFaRuSGbEQfHJ0UD5dnwEJMTBwHt99r2Dk0W-GmVfDDbbCziT0IqgHvA7Z0DpkRkh-rQTgU0VJrIzuXj3KpvY" alt="ตัวอย่างสลิปโอนเงินจากธนาคารบนสมาร์ตโฟน" />
+                  <span>SLIP-IMG</span>
+                </div>
+                <div class="preview-details">
+                  <div class="preview-meta">
+                    <div class="meta-header">
+                      <strong id="previewFileName">kbank_slip_20250512.jpg</strong>
+                      <button id="removeFileButton" type="button" aria-label="ลบตัวอย่างสลิป"><span class="material-symbols-outlined">close</span></button>
+                    </div>
+                    <small id="previewFileMeta">1.84 MB • ธ.กสิกรไทย</small>
+                  </div>
+                  <div class="extraction-row">
+                    <div><span>ยอดเงินที่ตรวจพบ</span><strong id="extractedAmount">฿1,450.00</strong></div>
+                    <div><span>ชื่อร้านค้าที่ตรวจพบ</span><strong id="extractedShopName" class="success">พร้อมตรวจสอบ</strong></div>
+                  </div>
+                  <div class="upload-progress">
+                      <div><span>สถานะการอ่านข้อมูล</span><strong id="progressStatus">100% เสร็จสิ้น</strong></div>
+                      <span class="progress-track" id="progressTrack" role="progressbar" aria-label="ความคืบหน้าการอ่านข้อมูล" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><span id="progressBar"></span></span>
+                  </div>
+                </div>
+              </div>
+              <button class="verify-button" id="verifyButton" type="button">
+                <span id="verifyButtonLabel">ดำเนินการตรวจสอบข้อมูล (VERIFY)</span>
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </button>
+            </div>
+
+            <div class="mini-panel tips-panel">
+              <div class="mini-header">
+                <span class="tips-icon material-symbols-outlined">lightbulb</span>
+                <span><h3>คำแนะนำเพื่อการสแกนที่แม่นยำ</h3><small>เพิ่มประสิทธิภาพการประมวลผลให้รวดเร็วและถูกต้อง 99.8%</small></span>
+              </div>
+              <ul class="feed-list">
+                <li><span class="tip-icon material-symbols-outlined">wb_sunny</span><span><strong>แสงสว่างเพียงพอและทั่วถึง</strong><small>หลีกเลี่ยงเงาสะท้อนจากหลอดไฟ หรือเงามือที่บดบังส่วนข้อความสำคัญ</small></span></li>
+                <li><span class="tip-icon material-symbols-outlined">center_focus_strong</span><span><strong>ตัวหนังสือคมชัด ไม่เบลอ</strong><small>ภาพต้นฉบับควรมีความละเอียดสูง ปราศจากการสั่นไหวของกล้อง</small></span></li>
+                <li><span class="tip-icon is-yellow material-symbols-outlined">qr_code_scanner</span><span><strong>เห็น QR Code และรหัสอ้างอิงชัดเจน</strong><small>อย่าให้ขอบของคิวอาร์โค้ดขาดหาย เพื่อให้ระบบตรวจสอบได้ทันที</small></span></li>
+              </ul>
+            </div>
+            <div class="engine-status"><span><i></i> BOT ENGINE OCR: READY FOR REAL-TIME PARSING</span><strong>256-BIT ENCRYPTED</strong></div>
+          </aside>
+        </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+  </body>
+</html>
