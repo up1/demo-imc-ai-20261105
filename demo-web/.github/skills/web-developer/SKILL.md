@@ -11,7 +11,7 @@ description: Web developer skill is a skill that allows you to create web applic
    2.2 Create plan and work-brekdown before implement the ui components.
 3. Test the web application to ensure it meets the requirements and specifications.
    3.1 Test UI web application
-   3.2 Check layout, theme, colors, and responsiveness of the web application from mockup ui with playwright-mcp.
+   3.2 Check layout, theme, colors of the web application from mockup ui with playwright-mcp.
    3.2 If test failed, go back to step 2 and fix the issues.
 
 
