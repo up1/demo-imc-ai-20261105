@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speech to Text · <%= model %></title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <h1>🎙️ Speech to Text</h1>
+    <p>Model <code><%= model %></code> · price <strong>$<%= pricing.perMinute %></strong> / minute of audio</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1. Audio input</h2>
+      <div class="row">
+        <label class="btn">
+          📁 Choose file
+          <input type="file" id="fileInput" accept=".mp3,.mp4,.mpeg,.mpga,.m4a,.wav,.webm,audio/*" hidden />
+        </label>
+        <button id="recordBtn" class="btn">⏺ Record</button>
+        <select id="language" title="Language hint (optional)">
+          <option value="">Auto language</option>
+          <option value="th">Thai (th)</option>
+          <option value="en">English (en)</option>
+          <option value="ja">Japanese (ja)</option>
+          <option value="zh">Chinese (zh)</option>
+        </select>
+      </div>
+      <p id="fileInfo" class="muted">No audio selected. Supported: mp3, mp4, mpeg, mpga, m4a, wav, webm (max 25 MB).</p>
+      <audio id="player" controls hidden></audio>
+      <button id="transcribeBtn" class="btn primary" disabled>✨ Transcribe</button>
+    </section>
+
+    <section class="card">
+      <h2>2. Transcript</h2>
+      <div id="status" class="muted"></div>
+      <pre id="transcript" class="transcript">—</pre>
+      <div id="lastUsage" class="last-usage" hidden></div>
+    </section>
+
+    <section class="card">
+      <div class="row space">
+        <h2>3. Usage monitoring</h2>
+        <button id="resetBtn" class="btn danger small">Reset history</button>
+      </div>
+
+      <div class="stats" id="stats">
+        <div class="stat"><span>Requests</span><strong data-k="requests"><%= summary.requests %></strong></div>
+        <div class="stat"><span>Input tokens</span><strong data-k="inputTokens"><%= summary.inputTokens.toLocaleString() %></strong>
+          <small>audio <b data-k="audioInputTokens"><%= summary.audioInputTokens.toLocaleString() %></b> · text <b data-k="textInputTokens"><%= summary.textInputTokens.toLocaleString() %></b></small></div>
+        <div class="stat"><span>Output tokens</span><strong data-k="outputTokens"><%= summary.outputTokens.toLocaleString() %></strong></div>
+        <div class="stat"><span>Total tokens</span><strong data-k="totalTokens"><%= summary.totalTokens.toLocaleString() %></strong></div>
+        <div class="stat"><span>Audio minutes</span><strong data-k="audioMinutes"><%= (summary.audioSeconds / 60).toFixed(2) %></strong></div>
+        <div class="stat highlight"><span>Total cost (USD)</span><strong data-k="cost">$<%= summary.cost.toFixed(6) %></strong></div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th><th>File</th><th>Duration</th>
+              <th>Input (audio / text)</th><th>Output</th><th>Total</th>
+              <th>Latency</th><th>Cost</th><th>Transcript</th>
+            </tr>
+          </thead>
+          <tbody id="history">
+            <% if (records.length === 0) { %>
+              <tr class="empty"><td colspan="9">No requests yet</td></tr>
+            <% } %>
+            <% records.forEach(r => { %>
+              <tr>
+                <td><%= new Date(r.createdAt).toLocaleString() %></td>
+                <td><%= r.filename %></td>
+                <td><%= r.durationSeconds ? r.durationSeconds.toFixed(1) + 's' : '-' %></td>
+                <td><%= r.inputTokens %> (<%= r.audioInputTokens %> / <%= r.textInputTokens %>)</td>
+                <td><%= r.outputTokens %></td>
+                <td><%= r.totalTokens %></td>
+                <td><%= r.latencyMs %> ms</td>
+                <td title="<%= r.costMethod %>">$<%= r.cost.toFixed(6) %></td>
+                <td class="clip" title="<%= r.text %>"><%= r.text %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted small">
+        Cost = audio minutes × $<%= pricing.perMinute %>.
+        <% if (pricing.audioInputPer1M || pricing.textInputPer1M || pricing.outputPer1M) { %>
+          Token pricing enabled: audio in $<%= pricing.audioInputPer1M %>/1M, text in $<%= pricing.textInputPer1M %>/1M, output $<%= pricing.outputPer1M %>/1M.
+        <% } %>
+      </p>
+    </section>
+  </main>
+
+  <script src="/client.js"></script>
+</body>
+</html>

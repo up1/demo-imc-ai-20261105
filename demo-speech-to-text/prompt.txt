@@ -1,0 +1,7 @@
+create web with nodejs + express + ejs to use sppech to text model with openai
+https://developers.openai.com/api/docs/guides/speech-to-text
+
+to monitoring token usage (input/output and cost) of model=gpt-transcribe
+https://developers.openai.com/api/docs/models/gpt-transcribe
+
+and create README.md to show steps to run

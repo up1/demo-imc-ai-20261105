@@ -1,0 +1,19 @@
+{
+  "name": "demo-speech-to-text",
+  "version": "1.0.0",
+  "description": "Speech-to-text demo with OpenAI gpt-transcribe + token/cost monitoring",
+  "main": "app.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env app.js",
+    "dev": "node --watch --env-file-if-exists=.env app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ejs": "^7.0.2",
+    "express": "^5.3.0",
+    "openai": "^7.51.0"
+  }
+}
