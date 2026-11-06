@@ -1,0 +1,42 @@
+{
+  "info": {
+    "_postman_id": "7d0b4fe9-1baf-4367-af33-438cdf446a92",
+    "name": "api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "1453931"
+  },
+  "item": [
+    {
+      "name": "https://jsonplaceholder.typicode.com/users/1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\nconst schema = {\n  type: \"object\",\n  required: [\"id\", \"name\", \"username\", \"email\", \"address\", \"phone\", \"website\", \"company\"],\n  properties: {\n    id:       { type: \"integer\" },\n    name:     { type: \"string\" },\n    username: { type: \"string\" },\n    email:    { type: \"string\", format: \"email\" },\n    address: {\n      type: \"object\",\n      required: [\"street\", \"suite\", \"city\", \"zipcode\", \"geo\"],\n      properties: {\n        street:  { type: \"string\" },\n        suite:   { type: \"string\" },\n        city:    { type: \"string\" },\n        zipcode: { type: \"string\" },\n        geo: {\n          type: \"object\",\n          required: [\"lat\", \"lng\"],\n          properties: {\n            lat: { type: \"string\" },\n            lng: { type: \"string\" }\n          },\n          additionalProperties: false\n        }\n      },\n      additionalProperties: false\n    },\n    phone:   { type: \"string\" },\n    website: { type: \"string\" },\n    company: {\n      type: \"object\",\n      required: [\"name\", \"catchPhrase\", \"bs\"],\n      properties: {\n        name:         { type: \"string\" },\n        catchPhrase:  { type: \"string\" },\n        bs:           { type: \"string\" }\n      },\n      additionalProperties: false\n    }\n  },\n  additionalProperties: false\n};\n\npm.test(\"Response matches JSON schema\", function () {\n  pm.response.to.have.jsonSchema(schema);\n});\n"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users/1",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "users",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
