@@ -83,7 +83,7 @@
 
         <section class="content-grid">
           <div class="primary-panel">
-            <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload slip file">
+            <div class="dropzone" id="dropzone" data-testid="test_id_dropzone" tabindex="0" role="button" aria-label="Upload slip file">
               <input id="slipFileInput" type="file" accept="image/jpeg,image/png" hidden />
 
               <div class="scan-graphic">
@@ -169,7 +169,7 @@
                 <span class="live-pill"><span class="dot"></span> พร้อมตรวจสอบ</span>
               </div>
 
-              <div class="slip-preview">
+              <div class="slip-preview" data-testid="test_id_filePreview">
                 <div class="preview-image">
                   <img id="slipPreview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjUwkACQiRQdEIeq_DkTftMNpbv3nyn3DvZ2leY71NEVdty99GkgOCzV4IKHNHtKfkL-hrWsWMpP3yweTpK_myJdcrETiNml3lOa0ToMooYndor4IEuck0wNvUMDTehmDsQio0FK1wR2xtSywlR6kFaRuSGbEQfHJ0UD5dnwEJMTBwHt99r2Dk0W-GmVfDDbbCziT0IqgHvA7Z0DpkRkh-rQTgU0VJrIzuXj3KpvY" alt="ตัวอย่างสลิปโอนเงินจากธนาคารบนสมาร์ตโฟน" />
                   <span>SLIP-IMG</span>
@@ -178,13 +178,13 @@
                   <div class="preview-meta">
                     <div class="meta-header">
                       <strong id="previewFileName">kbank_slip_20250512.jpg</strong>
-                      <button id="removeFileButton" type="button" aria-label="ลบตัวอย่างสลิป"><span class="material-symbols-outlined">close</span></button>
+                      <button id="removeFileButton" data-testid="test_id_removeFileButton" type="button" aria-label="ลบตัวอย่างสลิป"><span class="material-symbols-outlined">close</span></button>
                     </div>
                     <small id="previewFileMeta">1.84 MB • ธ.กสิกรไทย</small>
                   </div>
                   <div class="extraction-row">
-                    <div><span>ยอดเงินที่ตรวจพบ</span><strong id="extractedAmount">฿1,450.00</strong></div>
-                    <div><span>ชื่อร้านค้าที่ตรวจพบ</span><strong id="extractedShopName" class="success">พร้อมตรวจสอบ</strong></div>
+                    <div><span>ยอดเงินที่ตรวจพบ</span><strong id="extractedAmount" data-testid="test_id_extractedTotalAmount">฿1,450.00</strong></div>
+                    <div><span>ชื่อร้านค้าที่ตรวจพบ</span><strong id="extractedShopName" data-testid="test_id_extractedShopName" class="success">พร้อมตรวจสอบ</strong></div>
                   </div>
                   <div class="upload-progress">
                       <div><span>สถานะการอ่านข้อมูล</span><strong id="progressStatus">100% เสร็จสิ้น</strong></div>
@@ -192,7 +192,7 @@
                   </div>
                 </div>
               </div>
-              <button class="verify-button" id="verifyButton" type="button">
+              <button class="verify-button" id="verifyButton" data-testid="test_id_uploadButton" type="button">
                 <span id="verifyButtonLabel">ดำเนินการตรวจสอบข้อมูล (VERIFY)</span>
                 <span class="material-symbols-outlined">arrow_forward</span>
               </button>

@@ -32,7 +32,7 @@
       <form class="upload-form" id="uploadForm">
         <div class="workspace-grid">
           <div class="upload-column">
-            <div class="dropzone" id="dropzone" aria-label="พื้นที่วางไฟล์ภาพ">
+            <div class="dropzone" id="dropzone" data-testid="test_id_dropzone" aria-label="พื้นที่วางไฟล์ภาพ">
               <input id="slipFileInput" name="slip" type="file" accept="image/png,image/jpeg" hidden />
               <div class="scan-graphic" aria-hidden="true">
                 <div class="scan-ring"><span class="material-symbols-outlined">document_scanner</span></div>
@@ -51,7 +51,7 @@
               </button>
             </div>
 
-            <button class="verify-button" id="extractButton" type="submit" disabled>
+            <button class="verify-button" id="extractButton" data-testid="test_id_uploadButton" type="submit" disabled>
               <span id="extractButtonLabel">อ่านข้อมูลจากรูปภาพ</span>
               <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
             </button>
@@ -71,14 +71,14 @@
               </div>
             </section>
 
-            <section class="selected-file" id="selectedFile" aria-label="รูปภาพที่เลือก" hidden>
+            <section class="selected-file" id="selectedFile" data-testid="test_id_filePreview" aria-label="รูปภาพที่เลือก" hidden>
               <div class="preview-image"><img id="imagePreview" alt="ตัวอย่างรูปภาพที่เลือก" /></div>
               <div class="selected-details">
                 <span class="muted-label">SELECTED IMAGE</span>
                 <strong id="fileName"></strong>
                 <span class="file-size" id="fileSize"></span>
               </div>
-              <button class="icon-button" id="removeFileButton" type="button" aria-label="นำรูปภาพออก" title="นำรูปภาพออก">
+              <button class="icon-button" id="removeFileButton" data-testid="test_id_removeFileButton" type="button" aria-label="นำรูปภาพออก" title="นำรูปภาพออก">
                 <span class="material-symbols-outlined" aria-hidden="true">close</span>
               </button>
             </section>
@@ -94,11 +94,11 @@
               <dl class="result-grid">
                 <div class="detail-box">
                   <dt class="label">ชื่อร้านค้า</dt>
-                  <dd id="shopName">-</dd>
+                  <dd id="shopName" data-testid="test_id_extractedShopName">-</dd>
                 </div>
                 <div class="detail-box amount-box">
                   <dt class="label">ยอดรวม</dt>
-                  <dd id="totalAmount">-</dd>
+                  <dd id="totalAmount" data-testid="test_id_extractedTotalAmount">-</dd>
                 </div>
               </dl>
             </section>
