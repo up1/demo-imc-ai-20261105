@@ -83,3 +83,15 @@
 ]
 ```
 
+## API Testing in table format
+* MUST check response code
+* MUST check JSONSchema of response body
+
+| Test Case | Request | Expected Response | Status Code |
+|-----------|---------|------------------|-------------|
+| Valid product id | GET /api/v1/products/1 | Product information for id 1 | 200 |
+| Invalid product id (not found) | GET /api/v1/products/999 | Product not found | 404 |
+| Invalid product id (not an integer) | GET /api/v1/products/abc | Invalid request | 400 |
+| Rate limit exceeded | GET /api/v1/products/1 (after 100 requests in a minute) | Rate limit exceeded. Please try again later. | 429 |
+| Internal server error | GET /api/v1/products/1 (simulate server error) | Internal server error | 500 |    
+
