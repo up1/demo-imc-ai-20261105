@@ -4,6 +4,12 @@ exports.getIndex = (req, res) => {
   });
 };
 
+exports.getUpload = (req, res) => {
+  res.render('upload', {
+    title: 'SlipFlow | Receipt Extraction'
+  });
+};
+
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const RATE_LIMIT = 100;
 const RATE_WINDOW = 60 * 60 * 1000;

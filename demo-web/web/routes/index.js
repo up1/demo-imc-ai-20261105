@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { getIndex, postExtract, MAX_FILE_SIZE } = require('../controllers/indexController');
+const { getIndex, getUpload, postExtract, MAX_FILE_SIZE } = require('../controllers/indexController');
 
 const router = express.Router();
 const upload = multer({
@@ -18,6 +18,7 @@ const upload = multer({
 });
 
 router.get('/', getIndex);
+router.get('/upload', getUpload);
 router.post('/api/extract', upload.single('slip'), postExtract);
 router.use((error, req, res, next) => {
 	if (error instanceof multer.MulterError && error.code === 'LIMIT_FILE_SIZE') {
